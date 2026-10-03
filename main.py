@@ -31,10 +31,9 @@ def get_users():
 def search_users(username: str):
     with psycopg.connect(DATABASE_URL) as connection:
         with connection.cursor() as cursor:
-            query = "SELECT id, username, email FROM users WHERE username = %s"
-            cursor.execute(query, (username,))
+            query = f"SELECT id, username, email FROM users WHERE username = '{username}'"
+            cursor.execute(query)
             users = cursor.fetchall()
 
     return users
 
-    
